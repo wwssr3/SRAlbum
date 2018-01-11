@@ -14,6 +14,8 @@
 #import "SRVideoCaptureViewController.h"
 
 @interface ViewController ()<SRAlbumControllerDelegate,SRPhotoEidtViewDelegate,SRVideoCaptureViewControllerDelegate>
+#import <MobileCoreServices/MobileCoreServices.h>
+
 
 @end
 
@@ -30,9 +32,9 @@
 
 - (IBAction)action:(UIButton *)sender {
     SRAlbumViewController *vc = [[SRAlbumViewController alloc] init];
-    vc.resourceType = sender.tag;
+    vc.resourceType = 1;
     vc.albumDelegate = self;
-    vc.maxItem = 9;
+    vc.maxItem = 3;
     vc.videoMaximumDuration = 5;
 //    vc.isCanShot = YES;
     //编辑页的对象名,可以自定义
@@ -43,17 +45,34 @@
 }
 
 - (IBAction)vedioAction:(UIButton *)sender {
-    SRVideoCaptureViewController *viewController = [[SRVideoCaptureViewController alloc] init];
-    viewController.maxTime = 10;
-    viewController.delegate = self;
-    [self presentViewController:viewController animated:YES completion:nil];
+    UIImagePickerController *imagePickerController = [[UIImagePickerController alloc] init];
     
+    imagePickerController.delegate = self;
+    imagePickerController.allowsEditing = YES;
+    
+    imagePickerController.mediaTypes = @[(NSString *)kUTTypeImage];
+    imagePickerController.sourceType = UIImagePickerControllerSourceTypeCamera;
+    imagePickerController.cameraCaptureMode = UIImagePickerControllerCameraCaptureModePhoto;
+    imagePickerController.cameraDevice = UIImagePickerControllerCameraDeviceRear;
+//    UIImageView *view = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"frame"]];
+//    view.frame = CGRectMake(0, 44, self.view.frame.size.width, self.view.frame.size.height-44-72);
+//    view.frame = self.view.frame;
+    
+    UIView *framView = [[UIView alloc] initWithFrame:CGRectMake(0, 125, self.view.frame.size.width, self.view.frame.size.width)];
+    framView.layer.borderColor = UIColor.whiteColor.CGColor;
+    framView.layer.borderWidth = 10;
+    
+    imagePickerController.cameraOverlayView = framView;
+    [self presentViewController:imagePickerController animated:YES completion:^{
+    
+    }];
+
 }
 - (IBAction)selectMedia:(UIButton *)sender {
     SRAlbumViewController *vc = [[SRAlbumViewController alloc] init];
     vc.resourceType = 0;
     vc.albumDelegate = self;
-    vc.maxItem = 9;
+    vc.maxItem = 1;
     vc.videoMaximumDuration = 5;
     //    //编辑页的对象名,可以自定义
     //    vc.eidtClass = [SRPhotoEidtViewController class];
@@ -104,8 +123,34 @@
  @param viewController 编辑页面
  */
 - (void)didEidtEndWithDatas:(NSArray *)datas viewController:(SRPhotoEidtViewController *)viewController{
-    NSLog(@"%@",datas);
+    for (UIImage *image in datas) {
+        UIImageWriteToSavedPhotosAlbum(image, self, @selector(image:didFinishSavingWithError:contextInfo:), (__bridge void *)self);
+    }
+    
     [viewController dismissViewControllerAnimated:YES completion:nil];
 }
 
+#pragma mark - UIImagePickerControllerDelegate
+
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
+{
+    [picker dismissViewControllerAnimated:YES completion:nil];
+    UIImage *photoImage = [info objectForKey:UIImagePickerControllerEditedImage];
+     UIImageWriteToSavedPhotosAlbum(photoImage, self, @selector(image:didFinishSavingWithError:contextInfo:), (__bridge void *)self);
+    
+    SRPhotoEidtViewController *vc = [SRPhotoEidtViewController new];
+    vc.delegate = self;
+    vc.imageSource = @[photoImage];
+    [self presentViewController:vc animated:YES completion:nil];
+    
+}
+- (void)image:(UIImage *)image didFinishSavingWithError:(NSError *)error contextInfo:(void *)contextInfo
+{
+    
+    NSLog(@"image = %@, error = %@, contextInfo = %@", image, error, contextInfo);
+}
+
+- (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker {
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
 @end
