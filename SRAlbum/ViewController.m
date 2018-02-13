@@ -12,9 +12,11 @@
 #import "SRPhotoEidtViewController.h"//编辑
 #import "SRAlbumHelper.h"
 #import "SRVideoCaptureViewController.h"
-
-@interface ViewController ()<SRAlbumControllerDelegate,SRPhotoEidtViewDelegate,SRVideoCaptureViewControllerDelegate>
 #import <MobileCoreServices/MobileCoreServices.h>
+
+
+@interface ViewController ()<UINavigationControllerDelegate, UIImagePickerControllerDelegate, SRAlbumControllerDelegate,SRPhotoEidtViewDelegate,SRVideoCaptureViewControllerDelegate>
+
 
 
 @end
@@ -24,10 +26,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view, typically from a nib.
-//    if (UIVideoAtPathIsCompatibleWithSavedPhotosAlbum(@"/Users/shifenglei/Desktop/20170414145825.mp4")) {
-//        UISaveVideoAtPathToSavedPhotosAlbum(@"/Users/shifenglei/Desktop/20170414145825.mp4", self, nil, nil);
-//    }
+    
 }
 
 - (IBAction)action:(UIButton *)sender {
@@ -45,28 +44,32 @@
 }
 
 - (IBAction)vedioAction:(UIButton *)sender {
-    UIImagePickerController *imagePickerController = [[UIImagePickerController alloc] init];
     
+    UIImagePickerController *imagePickerController = [[UIImagePickerController alloc] init];
+    [imagePickerController.navigationBar setBarStyle:UIBarStyleBlack];
     imagePickerController.delegate = self;
     imagePickerController.allowsEditing = YES;
     
     imagePickerController.mediaTypes = @[(NSString *)kUTTypeImage];
     imagePickerController.sourceType = UIImagePickerControllerSourceTypeCamera;
+    imagePickerController.showsCameraControls = NO;
     imagePickerController.cameraCaptureMode = UIImagePickerControllerCameraCaptureModePhoto;
     imagePickerController.cameraDevice = UIImagePickerControllerCameraDeviceRear;
-//    UIImageView *view = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"frame"]];
-//    view.frame = CGRectMake(0, 44, self.view.frame.size.width, self.view.frame.size.height-44-72);
-//    view.frame = self.view.frame;
+//    UIImageView *framView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"Combined Shape"]];
+//
+//    framView.alpha = 0.8;
     
-    UIView *framView = [[UIView alloc] initWithFrame:CGRectMake(0, 125, self.view.frame.size.width, self.view.frame.size.width)];
-    framView.layer.borderColor = UIColor.whiteColor.CGColor;
-    framView.layer.borderWidth = 10;
+
+    UIView *framView = [[NSBundle mainBundle] loadNibNamed:@"frameView" owner:self options:nil].firstObject;
+//    framView.alpha = 0.8;
+    framView.frame = self.view.frame;
     
     imagePickerController.cameraOverlayView = framView;
     [self presentViewController:imagePickerController animated:YES completion:^{
     
     }];
 
+     
 }
 - (IBAction)selectMedia:(UIButton *)sender {
     SRAlbumViewController *vc = [[SRAlbumViewController alloc] init];
