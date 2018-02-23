@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		10498C0F2032C5440088AD2F /* frameView.m in Sources */ = {isa = PBXBuildFile; fileRef = 10498C0E2032C5440088AD2F /* frameView.m */; };
 		10498C112032C5940088AD2F /* frameView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 10498C102032C5940088AD2F /* frameView.xib */; };
+		10CC395F204000FC00F40B87 /* CustomImagePickerController.m in Sources */ = {isa = PBXBuildFile; fileRef = 10CC395E204000FC00F40B87 /* CustomImagePickerController.m */; };
 		1345173B1E98627E002043B8 /* SR_WhiteBack@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 134517391E98627E002043B8 /* SR_WhiteBack@2x.png */; };
 		1345173C1E98627E002043B8 /* SR_WhiteBack@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1345173A1E98627E002043B8 /* SR_WhiteBack@3x.png */; };
 		1345173F1E9891E6002043B8 /* SRBrowseImageCollectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1345173E1E9891E6002043B8 /* SRBrowseImageCollectionCell.m */; };
@@ -278,6 +279,8 @@
 		10498C0D2032C5440088AD2F /* frameView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = frameView.h; sourceTree = "<group>"; };
 		10498C0E2032C5440088AD2F /* frameView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = frameView.m; sourceTree = "<group>"; };
 		10498C102032C5940088AD2F /* frameView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = frameView.xib; sourceTree = "<group>"; };
+		10CC395D204000FC00F40B87 /* CustomImagePickerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomImagePickerController.h; sourceTree = "<group>"; };
+		10CC395E204000FC00F40B87 /* CustomImagePickerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomImagePickerController.m; sourceTree = "<group>"; };
 		134517391E98627E002043B8 /* SR_WhiteBack@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "SR_WhiteBack@2x.png"; sourceTree = "<group>"; };
 		1345173A1E98627E002043B8 /* SR_WhiteBack@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "SR_WhiteBack@3x.png"; sourceTree = "<group>"; };
 		1345173D1E9891E6002043B8 /* SRBrowseImageCollectionCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SRBrowseImageCollectionCell.h; sourceTree = "<group>"; };
@@ -854,6 +857,8 @@
 		D65496D01E9632F5002D58A3 /* SRAlbum */ = {
 			isa = PBXGroup;
 			children = (
+				10CC395D204000FC00F40B87 /* CustomImagePickerController.h */,
+				10CC395E204000FC00F40B87 /* CustomImagePickerController.m */,
 				D65496D41E9632F5002D58A3 /* AppDelegate.h */,
 				D65496D51E9632F5002D58A3 /* AppDelegate.m */,
 				D65496D71E9632F5002D58A3 /* ViewController.h */,
@@ -1609,6 +1614,7 @@
 				D6BBD78D1EA459A900E0F462 /* GPUImageHalftoneFilter.m in Sources */,
 				D641E3B81EA096A800F5F271 /* SRVideoCaptureViewController.m in Sources */,
 				D6BBD7921EA459A900E0F462 /* GPUImageHighlightShadowTintFilter.m in Sources */,
+				10CC395F204000FC00F40B87 /* CustomImagePickerController.m in Sources */,
 				D6BBD7E61EA459A900E0F462 /* GPUImageThresholdEdgeDetectionFilter.m in Sources */,
 				D6BBD7B81EA459A900E0F462 /* GPUImageNormalBlendFilter.m in Sources */,
 				D6BBD7F31EA459A900E0F462 /* GPUImageVibranceFilter.m in Sources */,

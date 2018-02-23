@@ -13,9 +13,9 @@
 #import "SRAlbumHelper.h"
 #import "SRVideoCaptureViewController.h"
 #import <MobileCoreServices/MobileCoreServices.h>
+#import "CustomImagePickerController.h"
 
-
-@interface ViewController ()<UINavigationControllerDelegate, UIImagePickerControllerDelegate, SRAlbumControllerDelegate,SRPhotoEidtViewDelegate,SRVideoCaptureViewControllerDelegate>
+@interface ViewController ()<UINavigationControllerDelegate, CustomImagePickerControllerDelegate, SRAlbumControllerDelegate,SRPhotoEidtViewDelegate,SRVideoCaptureViewControllerDelegate>
 
 
 
@@ -45,29 +45,29 @@
 
 - (IBAction)vedioAction:(UIButton *)sender {
     
-    UIImagePickerController *imagePickerController = [[UIImagePickerController alloc] init];
-    [imagePickerController.navigationBar setBarStyle:UIBarStyleBlack];
-    imagePickerController.delegate = self;
-    imagePickerController.allowsEditing = YES;
-    
-    imagePickerController.mediaTypes = @[(NSString *)kUTTypeImage];
-    imagePickerController.sourceType = UIImagePickerControllerSourceTypeCamera;
-    imagePickerController.showsCameraControls = NO;
-    imagePickerController.cameraCaptureMode = UIImagePickerControllerCameraCaptureModePhoto;
-    imagePickerController.cameraDevice = UIImagePickerControllerCameraDeviceRear;
-//    UIImageView *framView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"Combined Shape"]];
+//    UIImagePickerController *imagePickerController = [[UIImagePickerController alloc] init];
+//    [imagePickerController.navigationBar setBarStyle:UIBarStyleBlack];
+//    imagePickerController.delegate = self;
+//    imagePickerController.allowsEditing = YES;
 //
-//    framView.alpha = 0.8;
+//    imagePickerController.mediaTypes = @[(NSString *)kUTTypeImage];
+//    imagePickerController.sourceType = UIImagePickerControllerSourceTypeCamera;
+//    imagePickerController.showsCameraControls = NO;
+//    imagePickerController.cameraCaptureMode = UIImagePickerControllerCameraCaptureModePhoto;
+//    imagePickerController.cameraDevice = UIImagePickerControllerCameraDeviceRear;
+//    UIView *framView = [[NSBundle mainBundle] loadNibNamed:@"frameView" owner:self options:nil].firstObject;
+//    framView.frame = self.view.frame;
+//
+//    imagePickerController.cameraOverlayView = framView;
+//    [self presentViewController:imagePickerController animated:YES completion:^{
+//
+//    }];
+    CustomImagePickerController *imagepickerCtrl = [[CustomImagePickerController alloc] init];
     
-
-    UIView *framView = [[NSBundle mainBundle] loadNibNamed:@"frameView" owner:self options:nil].firstObject;
-//    framView.alpha = 0.8;
-    framView.frame = self.view.frame;
-    
-    imagePickerController.cameraOverlayView = framView;
-    [self presentViewController:imagePickerController animated:YES completion:^{
-    
-    }];
+    imagepickerCtrl.sourceType = UIImagePickerControllerSourceTypeCamera;
+    imagepickerCtrl.customDelegate = self;
+    imagepickerCtrl.showsCameraControls = NO;
+    [self presentViewController:imagepickerCtrl animated:YES completion:NULL];
 
      
 }
@@ -132,6 +132,19 @@
     
     [viewController dismissViewControllerAnimated:YES completion:nil];
 }
+#pragma mark CustomImagePickerControllerDelegate
+- (void)cameraPhoto:(UIImage *)image{
+
+    SRPhotoEidtViewController *vc = [SRPhotoEidtViewController new];
+    vc.delegate = self;
+    vc.imageSource = @[image];
+    [self presentViewController:vc animated:YES completion:nil];
+}
+
+- (void)cancelCamera{
+    [self dismissViewControllerAnimated:YES completion:NULL];
+}
+
 
 #pragma mark - UIImagePickerControllerDelegate
 

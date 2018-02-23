@@ -11,7 +11,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <view contentMode="scaleToFill" id="iN0-l3-epB">
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="frameView">
             <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
@@ -26,6 +26,11 @@
                     <rect key="frame" x="34" y="617" width="34" height="30"/>
                     <state key="normal" title="flash"/>
                 </button>
+                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rrN-ZN-fYd">
+                    <rect key="frame" x="313" y="617" width="46" height="30"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <state key="normal" title="back"/>
+                </button>
             </subviews>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
@@ -38,6 +43,11 @@
                 <constraint firstAttribute="bottom" secondItem="6ts-ZU-TUN" secondAttribute="bottom" id="ete-DJ-9uD"/>
                 <constraint firstAttribute="trailing" secondItem="6ts-ZU-TUN" secondAttribute="trailing" id="x7I-rT-tjG"/>
             </constraints>
+            <connections>
+                <outlet property="backButton" destination="rrN-ZN-fYd" id="27V-nm-m0F"/>
+                <outlet property="flashButton" destination="juN-Dg-0pA" id="OPg-n1-hHS"/>
+                <outlet property="photoButton" destination="Ywe-Z1-nm1" id="zt6-1l-VVT"/>
+            </connections>
             <point key="canvasLocation" x="37.5" y="102.5"/>
         </view>
     </objects>

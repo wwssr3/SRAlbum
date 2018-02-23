@@ -2,8 +2,8 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>CFBundleDevelopmentRegion</key>
-	<string>china</string>
+	<key>NSPhotoLibraryAddUsageDescription</key>
+	<string>dadad</string>
 	<key>CFBundleDisplayName</key>
 	<string>PhotoTest</string>
 	<key>CFBundleExecutable</key>
@@ -24,8 +24,6 @@
 	<true/>
 	<key>NSCameraUsageDescription</key>
 	<string>需要获取您的相机拍照权限</string>
-	<key>NSMicrophoneUsageDescription</key>
-	<string>需要获取您的相机录像权限</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>需要访问您的相册来发送或者保存图片</string>
 	<key>UILaunchStoryboardName</key>
